@@ -12,15 +12,20 @@
 <div class="container">
   Add a todo...
   <br />
-
-  <input type="text" class="input-text" placeholder="Type a todo" />
-  <button class="add-btn">Add todo</button>
+  <input
+    type="text"
+    class="input-text"
+    placeholder="Type a todo"
+    [(ngModel)]="todoValue"
+    (keyup.enter)="addItem()"
+  />
+  <button class="add-btn" (click)="addItem()">Add todo</button>
   <div class="list">
     <ul>
-      <li>
-        <input type="checkbox" name="isDone" />
-        Task 1
-        <button class="btn">Delete</button>
+      <li *ngFor="let item of list">
+        <input type="checkbox" name="isDone" [(ngModel)]="item.isDone" />
+        {{ item.value }}
+        <button class="btn" (click)="deleteItem(item.id)">Delete</button>
       </li>
     </ul>
   </div>

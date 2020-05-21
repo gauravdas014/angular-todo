@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { Todo } from "./todo"
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,16 +9,32 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-app';
-  date = new Date();
 
 
-  constructor() {
-    console.log("Constructor called");
+  todoValue: string;
+  list: Todo[];
+
+  ngOnInit() {
+    this.list = [];
+    this.todoValue = "";
 
   }
 
-  doSomething(val: string): void {
-    val = "Awesome";
+
+  addItem() {
+    if (this.todoValue !== "") {
+      const newItem: Todo = {
+        id: Date.now(),
+        value: this.todoValue,
+        isDone: false
+      };
+      this.list.push(newItem);
+    }
+    this.todoValue = "";
+
   }
 
+  deleteItem(id: number) {
+    this.list = this.list.filter((item) => item.id !== id);
+  }
 }

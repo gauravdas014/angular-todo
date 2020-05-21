@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-app';
+  title = 'angular-app';
+  date = new Date();
+
+
+  constructor() {
+    console.log("Constructor called");
+
+  }
+
+  doSomething(val: string): void {
+    val = "Awesome";
+  }
+
 }
